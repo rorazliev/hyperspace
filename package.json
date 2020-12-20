@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "http-server -op 1313 ./public"
+    "server": "http-server -op 1313 ."
   },
   "repository": {
     "type": "git",
