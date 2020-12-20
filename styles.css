@@ -8,8 +8,13 @@ html, body {
   width: 100%;
 }
 
+body {
+  background: #000;
+}
+
 #canvas {
   position: absolute;
+  background: #fff;
   margin: auto;
   bottom: 0;
   right: 0;
