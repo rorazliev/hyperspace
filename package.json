@@ -1,0 +1,27 @@
+{
+  "name": "hyperspace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "http-server -op 1313 ./public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rorazliev/hyperspace.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rorazliev/hyperspace/issues"
+  },
+  "homepage": "https://github.com/rorazliev/hyperspace#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^4.5.0",
+    "http-server": "^0.12.3",
+    "jest": "^26.6.3",
+    "webpack": "^5.11.0",
+    "webpack-cli": "^4.2.0"
+  }
+}
