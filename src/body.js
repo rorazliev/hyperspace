@@ -1,9 +1,6 @@
 export default class Body {
-  constructor (x, y, image, scale) {
-    this.x = x;
-    this.y = y;
-    this.image = new Image;
-    this.image.src = src;
+  constructor (image, scale) {
+    this.image = image;
     this.scale = scale;
   }
 
