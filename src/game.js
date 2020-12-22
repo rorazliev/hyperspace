@@ -1,7 +1,11 @@
 export default class Game {
-  constructor (canvasId) {
+  constructor (canvasId, resources) {
     this.canvas = document.getElementById(canvasId);
     this.context = this.canvas.getContext('2d');
+
+    this.resources = resources;
+
+    this.resources.forEach(resource => console.log(resource));
 
     this.handleCanvasResize();
     window.addEventListener('resize', () => this.handleCanvasResize());
