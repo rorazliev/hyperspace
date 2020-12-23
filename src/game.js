@@ -17,6 +17,7 @@ export default class Game {
 
     this.meteors = [];
 
+    this.score = 0;
     this.speed = 1;
     this.start();
   }
@@ -24,19 +25,8 @@ export default class Game {
   step () {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    if (randomNumber(0, 1000) > 990) {
-      if (this.meteors.length < 10) {
-        this.meteors.push(new Meteor(this.resources[0], 0.1, this.canvas));
-      }
-    }
-
-    this.meteors.forEach(meteor => {
-      meteor.update(this.speed);
-      this.draw(meteor);
-      if (meteor.top >= this.canvas.height) {
-        this.meteors.shift();
-      }
-    });
+    this.generateMeteors();
+    this.renderMeteors();
 
     this.draw(this.player);
   }
@@ -53,6 +43,14 @@ export default class Game {
       other.width,
       other.height
     );
+  }
+
+  generateMeteors () {
+    if (randomNumber(0, 1000) > 990) {
+      if (this.meteors.length < 10) {
+        this.meteors.push(new Meteor(this.resources[0], 0.1, this.canvas));
+      }
+    }
   }
 
   handleCanvasResize () {
@@ -72,15 +70,19 @@ export default class Game {
   handleKeydown (event) {
     switch (event.keyCode) {
       case 37:
+      case 65:
         this.player.moveLeft(this.speed);
         break;
       case 39:
+      case 68:
         this.player.moveRight(this.speed);
         break;
       case 38:
+      case 87;
         this.player.moveUp(this.speed);
         break;
       case 40:
+      case 83:
         this.player.moveDown(this.speed);
         break;
     }
@@ -88,6 +90,17 @@ export default class Game {
 
   pause () {
     clearInterval(this.timer);
+  }
+
+  renderMeteors () {
+    this.meteors.forEach(meteor => {
+      meteor.update(this.speed);
+      this.draw(meteor);
+      if (meteor.top >= this.canvas.height) {
+        this.meteors.shift();
+        this.score += 10;
+      }
+    });
   }
 
   start () {
