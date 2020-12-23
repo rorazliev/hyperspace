@@ -13,6 +13,7 @@ export default class Game {
     this.player = new Ship(resources[1], this.canvas);
     window.addEventListener('keydown', (event) => this.handleKeydown(event));
 
+    this.speed = 10;
     this.start();
   }
 
@@ -52,16 +53,16 @@ export default class Game {
   handleKeydown (event) {
     switch (event.keyCode) {
       case 37:
-        this.player.moveLeft();
+        this.player.moveLeft(this.speed);
         break;
       case 39:
-        this.player.moveRight();
+        this.player.moveRight(this.speed);
         break;
       case 38:
-        this.player.moveUp();
+        this.player.moveUp(this.speed);
         break;
       case 40:
-        this.player.moveDown();
+        this.player.moveDown(this.speed);
         break;
     }
   }
