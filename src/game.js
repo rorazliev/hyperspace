@@ -13,7 +13,7 @@ export default class Game {
     this.player = new Ship(resources[1], this.canvas);
     window.addEventListener('keydown', (event) => this.handleKeydown(event));
 
-    this.timer = setInterval(() => this.animate(), 1000/120);
+    this.start();
   }
 
   animate () {
@@ -64,5 +64,13 @@ export default class Game {
         this.player.moveDown();
         break;
     }
+  }
+
+  pause () {
+    clearInterval(this.timer);
+  }
+
+  start () {
+    this.timer = setInterval(() => this.animate(), 1000/120);
   }
 }
