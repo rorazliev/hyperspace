@@ -1,4 +1,6 @@
 import Ship from './ship';
+import {randomNumber} from './helpers';
+import Meteor from './meteor';
 
 export default class Game {
   constructor (canvasId, resources) {
@@ -13,12 +15,29 @@ export default class Game {
     this.player = new Ship(resources[1], this.canvas);
     window.addEventListener('keydown', (event) => this.handleKeydown(event));
 
-    this.speed = 10;
+    this.meteors = [];
+
+    this.speed = 1;
     this.start();
   }
 
-  animate () {
+  step () {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    if (randomNumber(0, 1000) > 990) {
+      if (this.meteors.length < 10) {
+        this.meteors.push(new Meteor(this.resources[0], 0.1, this.canvas));
+      }
+    }
+
+    this.meteors.forEach(meteor => {
+      meteor.update(this.speed);
+      this.draw(meteor);
+      if (meteor.top >= this.canvas.height) {
+        this.meteors.shift();
+      }
+    });
+
     this.draw(this.player);
   }
 
@@ -72,6 +91,6 @@ export default class Game {
   }
 
   start () {
-    this.timer = setInterval(() => this.animate(), 1000/120);
+    this.timer = setInterval(() => this.step(), 1000/120);
   }
 }
