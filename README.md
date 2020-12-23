@@ -1,4 +1,4 @@
-# HYPERSPACE
+<p align="center"><img src="media/heading.png" alt="HYPERSPACE"></p>
 
 ## Gameplay
 
