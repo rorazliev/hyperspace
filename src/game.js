@@ -18,7 +18,7 @@ export default class Game {
     this.meteors = [];
 
     this.score = 0;
-    this.speed = 1;
+    this.speed = 5;
     this.start();
   }
 
@@ -47,7 +47,7 @@ export default class Game {
 
   generateMeteors () {
     if (randomNumber(0, 1000) > 990) {
-      if (this.meteors.length < 10) {
+      if (this.meteors.length < 15) {
         this.meteors.push(new Meteor(this.resources[0], 0.1, this.canvas));
       }
     }
@@ -78,7 +78,7 @@ export default class Game {
         this.player.moveRight(this.speed);
         break;
       case 38:
-      case 87;
+      case 87:
         this.player.moveUp(this.speed);
         break;
       case 40:
@@ -99,6 +99,12 @@ export default class Game {
       if (meteor.top >= this.canvas.height) {
         this.meteors.shift();
         this.score += 10;
+        if (this.score % 100 === 0) {
+          this.speed += 1;
+        }
+      }
+      if (this.player.overlaps(meteor)) {
+        this.pause();
       }
     });
   }

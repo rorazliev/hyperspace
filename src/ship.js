@@ -16,21 +16,21 @@ export default class Ship extends Body {
   }
 
   moveRight (speed) {
-    this.x += speed * 2;
+    this.x += speed;
     if (this.x + this.width > this.canvas.width) {
       this.x = this.canvas.width - this.width;
     }
   }
 
   moveUp (speed) {
-    this.y -= speed * 2;
+    this.y -= speed;
     if (this.y < 0) {
       this.y = 0;
     }
   }
 
   moveDown (speed) {
-    this.y += speed * 3;
+    this.y += speed;
     if (this.y + this.height > this.canvas.height) {
       this.y = thdasis.canvas.height - this.height;
     }

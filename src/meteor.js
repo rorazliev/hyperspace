@@ -9,6 +9,6 @@ export default class Meteor extends Body {
   }
 
   update (speed) {
-    this.y += speed;
+    this.y += speed / 2;
   }
 }
