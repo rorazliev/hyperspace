@@ -1,6 +1,7 @@
 import Ship from './ship';
 import {randomNumber} from './helpers';
 import Meteor from './meteor';
+import Space from './space';
 
 export default class Game {
   constructor (canvasId, resources) {
@@ -17,18 +18,25 @@ export default class Game {
 
     this.meteors = [];
 
+    this.space = [
+      new Space(this.resources[2], 0),
+      new Space(this.resources[2], this.canvas.height)
+    ];
+
     this.score = 0;
     this.speed = 5;
+    this.level = 1;
+
     this.start();
   }
 
   step () {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+    this.renderBackground();
     this.generateMeteors();
     this.renderMeteors();
-
-    this.draw(this.player);
+    this.renderPlayer();
   }
 
   draw (other) {
@@ -92,6 +100,25 @@ export default class Game {
     clearInterval(this.timer);
   }
 
+  renderBackground () {
+    this.space[0].update(this.space[1], this.speed, this.canvas.height);
+    this.space[1].update(this.space[0], this.speed, this.canvas.height);
+
+    this.space.forEach(space => {
+      this.context.drawImage(
+        space.image,
+        0,
+        0,
+        space.image.width,
+        space.image.height,
+        space.x,
+        space.y,
+        this.canvas.width,
+        this.canvas.height
+      );
+    });
+  }
+
   renderMeteors () {
     this.meteors.forEach(meteor => {
       meteor.update(this.speed);
@@ -101,12 +128,17 @@ export default class Game {
         this.score += 10;
         if (this.score % 100 === 0) {
           this.speed += 1;
+          this.level += 1;
         }
       }
       if (this.player.overlaps(meteor)) {
         this.pause();
       }
     });
+  }
+
+  renderPlayer () {
+    this.draw(this.player);
   }
 
   start () {
