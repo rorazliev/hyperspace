@@ -1,6 +1,10 @@
 <p align="center"><img src="media/heading.png" alt="HYPERSPACE"></p>
 
-<p align="center"><img src="https://img.shields.io/github/languages/top/rorazliev/hyperspace?style=flat-square" alt="Language"><img src="https://img.shields.io/github/languages/code-size/rorazliev/hyperspace?style=flat-square" alt="Size"><img src="https://img.shields.io/github/license/rorazliev/hyperspace?style=flat-square" alt="License"></p>
+<p align="center">
+  <img src="https://img.shields.io/github/languages/top/rorazliev/hyperspace?style=flat-square" alt="Language">
+  <img src="https://img.shields.io/github/languages/code-size/rorazliev/hyperspace?style=flat-square" alt="Size">
+  <img src="https://img.shields.io/github/license/rorazliev/hyperspace?style=flat-square" alt="License">
+</p>
 
 ## About
 
