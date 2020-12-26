@@ -55,7 +55,7 @@ export default class Game {
   }
 
   generateMeteors () {
-    if (randomNumber(0, 1000) > 990) {
+    if (randomNumber(0, 1000) > 950) {
       if (this.meteors.length < 15) {
         this.meteors.push(new Meteor(this.resources[0], 0.1, this.canvas));
       }
