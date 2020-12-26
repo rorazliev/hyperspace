@@ -37,6 +37,7 @@ export default class Game {
     this.generateMeteors();
     this.renderMeteors();
     this.renderPlayer();
+    this.renderStats();
   }
 
   draw (other) {
@@ -139,6 +140,15 @@ export default class Game {
 
   renderPlayer () {
     this.draw(this.player);
+  }
+
+  renderStats () {
+    this.context.font = 'bold 18px Monospace';
+    this.context.fillStyle = '#ffffff';
+    this.context.textBaseline = 'middle';
+    this.context.textAlign = 'start';
+    this.context.fillText(`Level: ${this.level}`, 20, 20);
+    this.context.fillText(`Score: ${this.score}`, 20, 48);
   }
 
   start () {
