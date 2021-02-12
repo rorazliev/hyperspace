@@ -1,5 +1,5 @@
 import Body from './body';
-import {randomNumber} from './helpers';
+import {randomNumber} from './randomNumber';
 
 export default class Meteor extends Body {
   constructor (image, scale, canvas) {
@@ -8,7 +8,7 @@ export default class Meteor extends Body {
     this.y = 0 - this.height;
   }
 
-  update (speed) {
-    this.y += speed / 2;
+  move (speed) {
+    this.y += speed / 1.5;
   }
 }
