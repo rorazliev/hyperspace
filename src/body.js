@@ -1,53 +1,55 @@
 export default class Body {
-  constructor (image, scale) {
+  constructor(image, scale) {
     this.image = image;
     this.scale = scale;
   }
 
-  get x () {
+  get x() {
     return this._x;
   }
 
-  set x (value) {
+  set x(value) {
     this._x = value || 0;
   }
 
-  get y () {
+  get y() {
     return this._y;
   }
 
-  set y (value) {
+  set y(value) {
     this._y = value || 0;
   }
 
-  get width () {
+  get width() {
     return this.image.width * this.scale;
   }
 
-  get height () {
+  get height() {
     return this.image.height * this.scale;
   }
 
-  get top () {
+  get top() {
     return this.y;
   }
 
-  get bottom () {
+  get bottom() {
     return this.y + this.height;
   }
 
-  get left () {
+  get left() {
     return this.x;
   }
 
-  get right () {
+  get right() {
     return this.x + this.width;
   }
 
-  overlaps (other) {
-    return this.top < other.bottom &&
-    this.bottom > other.top &&
-    this.left < other.right &&
-    this.right > other.left;
+  overlaps(other) {
+    return (
+      this.top < other.bottom &&
+      this.bottom > other.top &&
+      this.left < other.right &&
+      this.right > other.left
+    );
   }
 }

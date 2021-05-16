@@ -1,17 +1,16 @@
-import Body from './body';
-import {DIRECTION} from './direction';
-
+import Body from "./body";
+import { DIRECTION } from "./direction";
 
 export default class Ship extends Body {
-  constructor (image, canvas) {
+  constructor(image, canvas) {
     super(image, 0.1);
-    this.x = (canvas.width / 2) - (this.width / 2);
-    this.y = (canvas.height / 2) - (this.height / 2);
+    this.x = canvas.width / 2 - this.width / 2;
+    this.y = canvas.height / 2 - this.height / 2;
     this.direction = DIRECTION.IDLE;
     this.canvas = canvas;
   }
 
-  move (speed) {
+  move(speed) {
     if (this.direction == DIRECTION.UP) {
       this.y -= speed;
       if (this.y < 0) {

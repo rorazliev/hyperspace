@@ -1,14 +1,14 @@
-import {DIRECTION} from './direction';
-import {LEVELING} from './leveling';
-import Meteor from './meteor';
-import {randomNumber} from './randomNumber';
-import Ship from './ship';
-import Space from './space';
+import { DIRECTION } from "./direction";
+import { LEVELING } from "./leveling";
+import Meteor from "./meteor";
+import { randomNumber } from "./randomNumber";
+import Ship from "./ship";
+import Space from "./space";
 
 export default class Game {
-  constructor (resources) {
-    this.canvas = document.getElementById('canvas');
-    this.context = this.canvas.getContext('2d');
+  constructor(resources) {
+    this.canvas = document.getElementById("canvas");
+    this.context = this.canvas.getContext("2d");
 
     this.resizeCanvas();
 
@@ -18,7 +18,7 @@ export default class Game {
     this.meteors = [];
     this.space = [
       new Space(this.resources[2], 0),
-      new Space(this.resources[2], this.canvas.height)
+      new Space(this.resources[2], this.canvas.height),
     ];
 
     this.isRunning = false;
@@ -32,23 +32,13 @@ export default class Game {
     this.listen();
   }
 
-  draw () {
-    this.context.clearRect(
-      0,
-      0,
-      this.canvas.width,
-      this.canvas.height
-    );
+  draw() {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.context.fillStyle = '#10121e';
-    this.context.fillRect(
-      0,
-      0,
-      this.canvas.width,
-      this.canvas.height
-    );
+    this.context.fillStyle = "#10121e";
+    this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.space.forEach(space => {
+    this.space.forEach((space) => {
       this.context.drawImage(
         space.image,
         0,
@@ -59,25 +49,24 @@ export default class Game {
         space.y,
         this.canvas.width,
         this.canvas.height
-      )
+      );
     });
 
     this.meteors.forEach((meteor) => {
       this.renderObject(meteor);
     });
 
-
     this.renderObject(this.player);
 
-    this.context.font = 'bold 18px Monospace';
-    this.context.fillStyle = '#ffffff';
-    this.context.textBaseline = 'middle';
-    this.context.textAlign = 'start';
+    this.context.font = "bold 18px Monospace";
+    this.context.fillStyle = "#ffffff";
+    this.context.textBaseline = "middle";
+    this.context.textAlign = "start";
     this.context.fillText(`Level: ${this.level}`, 20, 20);
     this.context.fillText(`Score: ${this.score}`, 20, 48);
   }
 
-  loop () {
+  loop() {
     this.update();
     this.draw();
 
@@ -86,8 +75,8 @@ export default class Game {
     }
   }
 
-  listen () {
-    document.addEventListener('keydown', (key) => {
+  listen() {
+    document.addEventListener("keydown", (key) => {
       if (!this.isRunning) {
         this.isRunning = true;
         requestAnimationFrame(() => this.loop());
@@ -107,25 +96,26 @@ export default class Game {
       }
     });
 
-    document.addEventListener('keyup', (key) => {
+    document.addEventListener("keyup", (key) => {
       this.player.direction = DIRECTION.IDLE;
     });
   }
 
-  menu () {
+  menu() {
     this.draw();
 
-    this.context.font = 'bold 18px Monospace';
-    this.context.fillStyle = '#ffffff';
-    this.context.textBaseline = 'middle';
-    this.context.textAlign = 'center';
-    this.context.fillText('Use arrows to move',
+    this.context.font = "bold 18px Monospace";
+    this.context.fillStyle = "#ffffff";
+    this.context.textBaseline = "middle";
+    this.context.textAlign = "center";
+    this.context.fillText(
+      "Use arrows to move",
       this.canvas.width / 2,
       this.canvas.height - 76
     );
   }
 
-  renderObject (body) {
+  renderObject(body) {
     this.context.drawImage(
       body.image,
       0,
@@ -136,24 +126,23 @@ export default class Game {
       body.y,
       body.width,
       body.height
-    )
+    );
   }
 
-  resizeCanvas () {
+  resizeCanvas() {
     let width = window.innerWidth;
     let height = window.innerHeight;
 
     if (height <= width) {
       this.canvas.height = height;
       this.canvas.width = height;
-    }
-    else {
+    } else {
       this.canvas.height = width;
       this.canvas.width = width;
     }
   }
 
-  update () {
+  update() {
     this.space[0].update(this.space[1], this.speed, this.canvas.height);
     this.space[1].update(this.space[0], this.speed, this.canvas.height);
 
@@ -163,7 +152,7 @@ export default class Game {
       }
     }
 
-    this.meteors.forEach(meteor => {
+    this.meteors.forEach((meteor) => {
       meteor.move(this.speed);
       if (meteor.top >= this.canvas.height) {
         this.meteors.shift();
@@ -174,7 +163,7 @@ export default class Game {
       }
     });
 
-    LEVELING.forEach(level => {
+    LEVELING.forEach((level) => {
       if (this.score == level.score) {
         this.level = level.level;
         this.speed = level.speed;
