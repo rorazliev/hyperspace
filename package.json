@@ -1,7 +1,7 @@
 {
   "name": "hyperspace",
   "version": "1.0.0",
-  "description": "A single-player browser game written in JavaScript",
+  "description": "A single-player browser game in JavaScript",
   "main": "index.js",
   "scripts": {
     "server": "http-server -op 1313 ./build",
@@ -19,7 +19,7 @@
     "nodejs",
     "webpack"
   ],
-  "author": "Ruslan Orazliev (https://linkedin.com/in/r-orazliev/)",
+  "author": "Ruslan Orazliev (https://linkedin.com/in/rorazliev/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rorazliev/hyperspace/issues"
